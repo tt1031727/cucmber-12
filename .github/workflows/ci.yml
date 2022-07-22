@@ -2,7 +2,7 @@ name: cypress test with cucumber
 
 on:
     push:
-        branches: [gh-page]
+        branches: [master]
 
 jobs:
     Run_test:
