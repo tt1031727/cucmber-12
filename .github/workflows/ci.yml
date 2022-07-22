@@ -22,5 +22,26 @@ jobs:
             - run: npm i
             - name: run test
               run: npm run runOnChrome
-      
+            - name: Generate Report
+              if: always()
+              run: npm run generateReport
+            - name: Upload Results
+              uses: actions/upload-artifact@v1
+              if: always()
+              with:
+                name: cucumber.html
+                path: ./reports
+                   
+            - name: Publishing cucumber.html artifact to Github Actions
+              uses: actions/upload-artifact@v2
+              if: always()
+              with:
+                 name: cucumber.html
+                 path: reports       
+            - name: Deploy report
+              uses: JamesIves/github-pages-deploy-action@4.1.4
+              if: always()
+              with:
+               branch: master 
+               folder: reports 
                 
